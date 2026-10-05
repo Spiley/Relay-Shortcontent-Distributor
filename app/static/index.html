@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="Upload your video once. Share it to TikTok, Instagram Reels and YouTube Shorts from your own server.">
+  <title>Relay — One video. Everywhere.</title>
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/legal.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7m2-4v5l3 2"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 14 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 2 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(1 0)"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3Z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 3v12a4 4 0 1 1-4-4m4-8c1 4 3 5 6 5"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="m16 3-9 5a4 4 0 0 0 0 7l1 .5-1 1a3 3 0 0 0 3 5l9-5a4 4 0 0 0 0-7l-1-.5 1-1a3 3 0 0 0-3-5Z"/><path d="m10 9 5 3-5 3Z"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6L10 14m0-10H4v16h16v-6"/></symbol>
+  </svg>
+  <div id="auth-screen" class="auth-screen" hidden>
+    <div class="auth-card"><div class="brand"><span class="brand-mark">r<span>↗</span></span>relay<span class="brand-dot">.</span></div>
+      <span class="eyebrow">YOUR CONTENT. YOUR SERVER.</span>
+      <h1 id="auth-title">Your own little launchpad.</h1><p id="auth-description">Set a password to keep your videos and account connections private.</p>
+      <form id="auth-form"><label for="password">Relay password</label><input id="password" type="password" autocomplete="new-password" required placeholder="At least 12 characters" maxlength="256">
+      <button class="button primary" type="submit" id="auth-submit">Create my workspace <svg><use href="#i-arrow"/></svg></button><p id="auth-error" class="error-text" role="alert"></p></form>
+      <div class="privacy-note"><svg><use href="#i-lock"/></svg> Self-hosted. No subscription. No publishing middleman.</div>
+      <p class="legal-links"><a href="/terms" target="_blank" rel="noopener">Terms of Service</a> <span aria-hidden="true">&middot;</span> <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a></p>
+    </div>
+  </div>
+  <div id="workspace" class="workspace" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Relay home"><span class="brand-mark">r<span>↗</span></span>relay<span class="brand-dot">.</span></a>
+      <div class="workspace-label"><span class="avatar">Y</span><div>Your workspace<small>Personal studio</small></div><span class="online-dot"></span></div>
+      <span class="nav-label">WORKSPACE</span>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="compose"><svg><use href="#i-plus"/></svg>New post<span class="nav-badge">+</span></button>
+        <button class="nav-item" data-view="activity"><svg><use href="#i-history"/></svg>Post history<span id="history-count" class="count">0</span></button>
+        <button class="nav-item" data-view="connections"><svg><use href="#i-link"/></svg>Connections<span id="connection-dot" class="nav-status"></span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="local-card"><span class="mini-icon"><svg><use href="#i-lock"/></svg></span><strong>A home for your content</strong><p>Videos and connections stay on your server.</p><div class="storage-bar"><span id="storage-meter"></span></div><small id="storage-size">0 MB stored locally</small></div>
+      <button id="logout" class="text-button">Sign out <svg><use href="#i-arrow"/></svg></button><small class="version">RELAY / SELF-HOSTED</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><span><span class="breadcrumb">Workspace</span><span class="slash">/</span><span id="page-name">New post</span></span><div class="server-pill"><span class="online-dot"></span> Your server <svg><use href="#i-lock"/></svg></div></header>
+      <div class="content">
+        <section id="view-compose" class="view">
+          <div class="page-heading"><div><span class="eyebrow">LESS UPLOADING. MORE CREATING.</span><h1>One video. <span>Everywhere.</span></h1><p>Make it once. Give it three places to shine.</p></div><span class="heading-art" aria-hidden="true">↗</span></div>
+          <div class="compose-layout"><form id="post-form" class="composer">
+            <div class="section-heading"><h2>Create a post</h2><span class="soft-badge">Your next big thing</span></div>
+            <div class="editor-grid"><div class="upload-column"><label class="field-label">01 <span>Your video</span></label>
+              <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose or drop a video">
+                <div id="upload-prompt"><span class="upload-symbol"><svg><use href="#i-upload"/></svg></span><h3>Drop your video here</h3><p>or <span class="browse">browse files</span></p><small>MP4, MOV or WebM · <span id="upload-limit">512</span> MB max</small><span class="format-hint">↑ Vertical looks best everywhere</span></div>
+                <video id="preview" controls playsinline hidden></video>
+              </div>
+              <input id="video-file" type="file" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm" hidden>
+              <div id="file-details" class="file-details" hidden><svg><use href="#i-video"/></svg><span id="file-name"></span><button type="button" id="remove-file" aria-label="Remove video">×</button></div>
+            </div><div class="caption-column"><label class="field-label" for="caption">02 <span>The caption</span></label><textarea id="caption" placeholder="Tell the story behind your video…&#10;&#10;A great opening line goes a long way.&#10;Add your #hashtags here, too." maxlength="2200" required></textarea><div class="caption-footer"><span>One caption, all your platforms.</span><span><b id="caption-count">0</b> / 2,200</span></div>
+              <div class="caption-tip"><span>✦</span><p>Keep the first line punchy.<br>That’s what people see first.</p></div></div></div>
+            <div class="destination-heading"><label class="field-label">03 <span>Send it to</span></label><button type="button" class="text-button" data-open-connections>Manage accounts <svg><use href="#i-arrow"/></svg></button></div>
+            <div class="platform-grid" id="platform-grid"></div>
+            <div class="mode-row"><label class="switch"><input id="manual-mode" type="checkbox"><span class="switch-track"></span><span>Prepare for manual upload</span></label><span class="mode-hint" id="mode-hint">No platform accounts needed</span></div>
+            <div id="tiktok-options" class="platform-options" hidden><h3>TikTok posting options</h3><p id="tiktok-account"></p><label for="tiktok-privacy">Who can watch this video?</label><select id="tiktok-privacy"><option value="">Choose visibility…</option></select>
+              <div class="check-row"><label><input type="checkbox" id="allow-comment"> Allow comments</label><label><input type="checkbox" id="allow-duet"> Allow Duet</label><label><input type="checkbox" id="allow-stitch"> Allow Stitch</label></div>
+              <label class="check-label"><input type="checkbox" id="commercial"> This video promotes a brand, product, or service</label><div id="brand-options" hidden><div class="check-row"><label><input type="checkbox" id="own-brand"> Your brand</label><label><input type="checkbox" id="branded-content"> Branded content</label></div><p id="brand-label"></p></div>
+              <label class="check-label consent"><input type="checkbox" id="tiktok-consent"><span>By posting, you agree to TikTok’s <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener noreferrer">Music Usage Confirmation</a><span id="branded-consent" hidden> and <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank" rel="noopener noreferrer">Branded Content Policy</a></span>.</span></label>
+            </div>
+            <details id="extra-options" class="extra-options"><summary>A few more options <span>+</span></summary><div class="extra-grid"><div><label for="youtube-title">Shorts title <small>optional; first caption line by default</small></label><input id="youtube-title" maxlength="100" placeholder="Your video's title"><label for="youtube-privacy">YouTube visibility</label><select id="youtube-privacy"><option value="public">Public</option><option value="unlisted">Unlisted</option><option value="private">Private</option></select></div><div><label class="check-label"><input id="made-for-kids" type="checkbox"> This video is made for children</label><label class="check-label"><input id="ai-generated" type="checkbox"> Realistic AI-generated or altered content</label><p class="muted">YouTube may restrict uploads from an unverified API app to private, even if you choose Public.</p></div></div></details>
+            <div id="compose-notice" class="notice" hidden></div><p id="post-error" class="error-text" role="alert"></p>
+            <div class="publish-footer"><span id="publish-summary"><svg><use href="#i-lock"/></svg> Your video stays yours.</span><button id="publish" class="button primary" type="submit">Publish video <svg><use href="#i-arrow"/></svg></button></div>
+            <div id="upload-progress" class="progress-area" hidden><progress id="progress" max="100" value="0"></progress><span id="progress-text">Uploading to your server…</span></div>
+          </form><aside class="compose-aside"><div class="route-card"><span class="eyebrow">ONE UPLOAD. THREE DESTINATIONS.</span><div class="route-art" aria-hidden="true"><div class="route-source"><svg><use href="#i-video"/></svg></div><div class="route-lines"><span></span><span></span><span></span></div><div class="route-targets"><span class="tiktok"><svg><use href="#i-tiktok"/></svg></span><span class="instagram"><svg><use href="#i-instagram"/></svg></span><span class="youtube"><svg><use href="#i-youtube"/></svg></span></div></div><h3>More reach.<br>Same great video.</h3><p>Connect your accounts once. Relay takes care of the uploads after you hit publish.</p><button type="button" class="text-button" data-open-connections>Connect your accounts <svg><use href="#i-arrow"/></svg></button></div>
+              <div class="tip-card"><span class="tip-mark">✳</span><h3>Made for the small screen</h3><p>For all three platforms, use a vertical or square video between 3 seconds and 3 minutes.</p><div class="tip-tags"><span>9:16 recommended</span><span>Up to 3 min</span></div></div>
+              <div class="small-note"><svg><use href="#i-check"/></svg><p>No watermarks. No subscriptions.<br>Just your content, on your terms.</p></div>
+          </aside></div>
+          <div class="recent-heading"><h2>Recent posts</h2><button class="text-button" type="button" data-open-history>View all <svg><use href="#i-arrow"/></svg></button></div><div id="recent-posts" class="posts-list"></div>
+        </section>
+        <section id="view-activity" class="view" hidden><div class="page-heading"><div><span class="eyebrow">KEEP AN EYE ON YOUR CONTENT.</span><h1>Your post history<span class="orange">.</span></h1><p>Every upload, and where it landed.</p></div></div><div class="notice">“Published” means the platform confirmed it. Drafts, restricted visibility, and uncertain uploads are shown separately. Relay never automatically retries an uncertain post.</div><div id="all-posts" class="posts-list history-list"></div></section>
+        <section id="view-connections" class="view" hidden><div class="page-heading"><div><span class="eyebrow">A LITTLE SETUP. A LOT LESS REPETITION.</span><h1>Connect once<span class="orange">.</span></h1><p>Your account keys stay encrypted on this server.</p></div></div>
+          <div class="setup-banner"><span>↗</span><div><strong>Free and self-hosted, with a one-time setup.</strong><p>Official APIs need developer apps. Start with YouTube, then connect Instagram. TikTok draft mode is the practical personal-use option. Public direct posting requires approval; TikTok excludes tools intended only for personal or team accounts.</p><p>You can always prepare a video here and upload it manually with no platform API setup.</p></div></div>
+          <form id="settings-form"><div class="settings-card"><h2>Where your Relay lives</h2><label for="base-url">Website URL</label><div class="url-row"><input id="base-url" type="url" required placeholder="http://localhost:8088"><button class="button secondary" type="button" id="use-current-url">Use current URL</button></div><p class="muted">YouTube can connect on localhost. TikTok and Instagram need HTTPS. Instagram also needs to fetch your video from this public URL. Use your existing HTTPS reverse proxy or tunnel; Relay remains one container.</p></div>
+            <div class="settings-card"><h2>Public policy pages</h2><p class="muted">For your developer app settings, open each page and copy its full HTTPS address. Both pages are available without signing in.</p><p class="legal-links"><a href="/terms" target="_blank" rel="noopener">Terms of Service</a> <span aria-hidden="true">&middot;</span> <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a></p></div>
+            <div id="connection-cards"></div><p id="settings-error" class="error-text" role="alert"></p><div class="settings-footer"><span>Leave a saved secret blank to keep it.</span><button class="button primary" type="submit" id="save-settings">Save settings <svg><use href="#i-check"/></svg></button></div></form>
+        </section>
+      </div><footer class="page-footer"><span>Made once. Shared everywhere.</span><span><a href="/terms" target="_blank" rel="noopener">Terms of Service</a> &middot; <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a></span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

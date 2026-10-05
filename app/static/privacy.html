@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How Relay, operated by Spiley, handles uploads, connected accounts, and personal data.">
+  <title>Privacy Policy · Relay by Spiley</title>
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/legal.css">
+</head>
+<body class="legal-page">
+  <div class="legal-shell">
+    <header class="legal-nav">
+      <a class="brand" href="/" aria-label="Relay home"><span class="brand-mark">r<span>↗</span></span>relay<span class="brand-dot">.</span></a>
+      <nav aria-label="Policy navigation"><a href="/">Open Relay</a><a href="/terms">Terms of Service</a><a href="mailto:spileyapps@gmail.com">Contact Spiley</a></nav>
+    </header>
+    <main class="legal-document">
+      <h1>Privacy Policy</h1>
+      <p class="legal-date">Effective date: <time datetime="2026-10-05">5 October 2026</time></p>
+      <p>This policy covers the Relay installation operated by <strong>Spiley</strong>. Spiley is responsible for the personal data handled by this installation. For privacy questions, complaints, or deletion requests, contact <a href="mailto:spileyapps@gmail.com">spileyapps@gmail.com</a>. Other installations of the Relay software have their own operators and practices.</p>
+      <h2>1. Information we handle</h2>
+      <ul>
+        <li><strong>Uploads:</strong> videos, audio and other personal information contained in those videos, captions, filenames, titles, technical video properties, and the posting settings you select.</li>
+        <li><strong>Connected accounts:</strong> platform account identifiers and display names, permissions, authorization tokens, refresh tokens, and token expiry information. If you enter developer app credentials, those are stored too. Platform passwords are entered on the platform's own sign-in page, not in Relay.</li>
+        <li><strong>Post history:</strong> upload times, destination accounts, processing results, remote post identifiers or links, visibility results, and errors needed to track an upload.</li>
+        <li><strong>Workspace security:</strong> a hash of the Relay password, session records, temporary sign-in verification records, and recent failed login times associated with an IP address. The application uses IP addresses for temporary login rate limiting.</li>
+        <li><strong>Contact requests:</strong> your email address and the information you choose to include when contacting Spiley.</li>
+      </ul>
+      <h2>2. Why we use this information</h2>
+      <p>We use this information to prepare your videos, authenticate workspace access, connect accounts you authorize, upload to destinations you select, refresh authorization, check processing results, display history, troubleshoot failures, and answer your requests. Providing upload data is necessary to prepare a video; platform authorization is necessary for automatic uploads. You can use manual mode without connecting social accounts.</p>
+      <p>Where data protection law requires a legal basis, requested service delivery is based on performance of our agreement with you; security and troubleshooting are based on the legitimate interest in protecting and operating the workspace; legally required processing is based on legal obligations. Where processing depends on consent, you may withdraw it. Granting platform access is optional and can be revoked.</p>
+      <h2>3. Platforms and other recipients</h2>
+      <p>When you connect an account or select a destination for an automatic upload, Relay exchanges the necessary account, video, caption, settings, and status information with that platform. Manual mode does not automatically send the prepared video to a destination. TikTok draft video uploads require you to finish the post and paste the caption in TikTok.</p>
+      <p>Relay uses <strong>YouTube API Services</strong> for its YouTube connection. These services are subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can revoke Relay's access using your <a href="https://security.google.com/settings/security/permissions">Google account security settings</a>. Instagram and TikTok handle information under their own <a href="https://privacycenter.instagram.com/policy/">Instagram privacy policy</a> and <a href="https://www.tiktok.com/legal/privacy-policy">TikTok privacy policy</a>.</p>
+      <p>Instagram retrieves an uploaded video through a public link protected by a signature and an expiry time, normally 24 hours. Anyone holding a valid link can retrieve that video until the link expires or the local file is removed. Platform copies can remain after the link expires.</p>
+      <p>This installation uses Cloudflare Tunnel for public access. Cloudflare processes network requests, which may include IP addresses, request metadata, and uploaded content, to deliver and protect traffic. See the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>. The Ubuntu server operator and any configured hosting, network, or backup providers may also have access needed to operate the installation. Spiley receives privacy inquiries through Gmail, a Google service.</p>
+      <p>The Relay application does not sell personal data, display advertising, or include advertising or analytics trackers. We may disclose information where legally required or necessary to address a security incident, subject to applicable law.</p>
+      <h2>4. Storage and security</h2>
+      <p>Application data is stored on the server running this Relay installation. Developer credentials and authorization tokens are encrypted at rest by the application. Passwords are hashed. Videos and post history are protected by workspace and server access controls; they are not encrypted at rest by Relay itself. Server administrators can access stored data.</p>
+      <p>Public access uses HTTPS through the tunnel. No security measure guarantees complete protection. Keep your workspace password private and contact Spiley if you suspect unauthorized access.</p>
+      <h2>5. Cookies and browser storage</h2>
+      <p>Relay uses an essential <code>relay_session</code> cookie to keep you signed in and to verify account connections. It expires after seven days unless you sign out earlier. Session records contain a hash of the cookie value. This cookie uses HttpOnly and SameSite protections. Relay does not add analytics or advertising cookies. Cloudflare and the platform sign-in pages may use their own cookies as described in their policies.</p>
+      <h2>6. Retention and deletion</h2>
+      <p>Uploaded videos, captions, and history are retained until they are removed from History or deleted by the operator. Relay does not automatically delete completed uploads after a fixed period. Pending or uncertain jobs must be resolved before the normal History removal action is available. Contact Spiley if you need deletion while a job remains pending.</p>
+      <p>Saved account tokens remain until you disconnect the account or the operator removes them. Developer app credentials remain in the saved settings until replaced or removed. Expired sessions and temporary account-connection records stop granting access at expiry; database housekeeping removes old records when new sessions or connection attempts are created. Failed-login rate limiting is held temporarily in application memory.</p>
+      <p>Contact Spiley to request deletion of all data associated with your use, including saved credentials and account information. We will verify the request and handle it within applicable legal and platform deadlines. Requests to delete stored YouTube API data will be handled as soon as possible and within seven calendar days. Backups, if the operator creates them, need separate deletion or rotation; contact Spiley for the retention schedule applicable to any backup.</p>
+      <p><strong>Removing local data does not delete published posts.</strong> Manage or delete those through TikTok, Instagram, or YouTube. Their retention rules apply to data already received by them. Disconnecting in Relay removes its saved connection token; you can also revoke permissions in the platform's settings. A job already accepted by a platform may continue processing.</p>
+      <h2>7. Your rights and choices</h2>
+      <p>You can disconnect accounts in Connections, revoke permissions on the connected platform, download your prepared videos, and remove eligible local uploads in History. For other access, correction, deletion, restriction, objection, or portability requests, email Spiley. These rights apply to the extent provided by the law governing your data. You may also complain to your local data protection authority. Withdrawing consent does not affect processing that was lawful before withdrawal.</p>
+      <h2>8. International processing and other people's data</h2>
+      <p>Connected platforms, Cloudflare, and email or hosting providers may process information in countries outside yours. Their policies explain their processing locations and transfer safeguards. Contact Spiley for details of this installation's hosting location and any applicable transfer arrangements. Only upload personal information about others when you have a lawful reason and any permissions required to do so. Relay is not intended as a service directed at children.</p>
+      <h2>9. Changes and contact</h2>
+      <p>Updates will be published here with an updated effective date. We will bring material changes to authorized users' attention and obtain fresh consent where required before using data for a new purpose.</p>
+      <div class="legal-contact"><p><strong>Operator:</strong> Spiley<br><strong>Privacy contact:</strong> <a href="mailto:spileyapps@gmail.com">spileyapps@gmail.com</a></p></div>
+    </main>
+  </div>
+</body>
+</html>
